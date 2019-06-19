@@ -1,13 +1,16 @@
 import React from 'react'
 import Form from './components/Form'
-import logo from './logo.svg'
+import { Provider } from "react-redux"
+import Store from './store'
 import './App.css'
 
 function App() {
   return (
-    <div className="App">
-      <Form />
-    </div>
+    <Provider store={ Store }>
+      <div className="App">
+        <Form />
+      </div>
+    </Provider>
   )
 }
 
