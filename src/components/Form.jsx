@@ -1,4 +1,5 @@
 import React from "react"
+import Grain from "../models/grain"
 
 export default class Form extends React.Component {
   constructor(props) {
@@ -6,6 +7,7 @@ export default class Form extends React.Component {
 
     this.state = {
       abv: 0,
+      errors: [],
       grainAmount: 0,
       grainType: "",
       grainUnit: "oz",
@@ -19,17 +21,21 @@ export default class Form extends React.Component {
 
   addGrain(e) {
     e.preventDefault()
-    const grainToAdd = {
-      amount: this.state.grainAmount,
-      type: this.state.grainType,
-      unit: this.state.grainUnit
+    const { grainType, grainAmount, grainUnit } = this.state
+    const grainToAdd = new Grain(grainType, grainAmount, grainUnit)
+    if (grainToAdd.validationErrors.length === 0) {
+      this.props.addGrain(grainToAdd)
+      this.setState({
+        errors: [],
+        grainAmount: 0,
+        grainType: "",
+        grainUnit: "oz"
+      })
+    } else {
+      this.setState({
+        errors: grainToAdd.validationErrors
+      })
     }
-    this.props.addGrain(grainToAdd)
-    this.setState({
-      grainAmount: 0,
-      grainType: "",
-      grainUnit: "oz"
-    })
   }
 
   update(field) {
@@ -67,6 +73,10 @@ export default class Form extends React.Component {
         <h1 style={ sectionHeader }>Grains</h1>
 
         {/* Add Grains */}
+        { this.state.errors.map((error, index) => (
+          <p key={ index }>{ error.message }</p>
+        ))}
+
         <form onSubmit={ this.addGrain }>
           <label htmlFor="grains">Add Type</label>
           <input type="text"
