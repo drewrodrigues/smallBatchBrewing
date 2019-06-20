@@ -92,14 +92,8 @@ export default class GrainForm extends Component {
 
 // TODO: come up with better solution for css
 
-const addedGrainsHeaderStyle = {
-  color: "#ccc",
-  fontWeight: "700",
-  marginBottom: "10px",
-  marginTop: "25px"
-}
-
 const formStyle = {
+  background: "white",
   borderRadius: "10px",
   boxShadow: "0 0 10px rgba(0,0,0,0.25)",
   margin: "25px auto 0",
@@ -117,17 +111,6 @@ const errorStyle = {
 
 const errorsStyle = {
   marginBottom: "10px"
-}
-
-const grainDetailStyle = {
-  float: "right"
-}
-
-const grainStyle = {
-  background: "#ccc",
-  borderRadius: "5px",
-  marginBottom: "5px",
-  padding: "10px"
 }
 
 const inputStyle = {

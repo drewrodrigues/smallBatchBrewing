@@ -77,6 +77,7 @@ const addedGrainsHeaderStyle = {
 }
 
 const formStyle = {
+  background: "white",
   borderRadius: "10px",
   boxShadow: "0 0 10px rgba(0,0,0,0.25)",
   margin: "25px auto 0",
@@ -89,7 +90,7 @@ const grainDetailStyle = {
 }
 
 const grainStyle = {
-  background: "#ccc",
+  background: "#f9c633",
   borderRadius: "5px",
   marginBottom: "5px",
   padding: "10px"
