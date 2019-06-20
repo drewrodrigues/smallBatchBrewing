@@ -1,5 +1,6 @@
 import React from "react"
 import Grain from "../models/grain"
+import { oneGallonMultiplier } from "../helpers/conversions"
 
 export default class Form extends React.Component {
   constructor(props) {
@@ -9,7 +10,8 @@ export default class Form extends React.Component {
       abv: 0,
       errors: [],
       hops: [],
-      unitAmount: 0,
+      multiplier: 1,
+      unitAmount: 1,
       recipeUnits: "gallons"
     }
   }
@@ -17,7 +19,11 @@ export default class Form extends React.Component {
   update(field) {
     return e => {
       this.setState({
-        [field]: e.target.value
+        [field]: e.target.value,
+      }, () => {
+        this.setState({
+          multiplier: oneGallonMultiplier(this.state.recipeUnits, this.state.unitAmount)
+        })
       })
     }
   }
@@ -26,6 +32,7 @@ export default class Form extends React.Component {
     return (
       <div style={ formStyle }>
         <h1 style={ sectionHeader }>Recipe Details</h1>
+        <h2>Multiplier: { this.state.multiplier }</h2>
 
         {/* Units */}
         <label htmlFor="units">Recipe Units</label>
