@@ -8,33 +8,9 @@ export default class Form extends React.Component {
     this.state = {
       abv: 0,
       errors: [],
-      grainAmount: 0,
-      grainType: "",
-      grainUnit: "oz",
       hops: [],
       unitAmount: 0,
       recipeUnits: "gallons"
-    }
-
-    this.addGrain = this.addGrain.bind(this)
-  }
-
-  addGrain(e) {
-    e.preventDefault()
-    const { grainType, grainAmount, grainUnit } = this.state
-    const grainToAdd = new Grain(grainType, grainAmount, grainUnit)
-    if (grainToAdd.validationErrors.length === 0) {
-      this.props.addGrain(grainToAdd)
-      this.setState({
-        errors: [],
-        grainAmount: 0,
-        grainType: "",
-        grainUnit: "oz"
-      })
-    } else {
-      this.setState({
-        errors: grainToAdd.validationErrors
-      })
     }
   }
 
@@ -69,49 +45,6 @@ export default class Form extends React.Component {
           style={ inputStyle }
           value={ this.state.unitAmount }
         />
-
-        <h1 style={ sectionHeader }>Grains</h1>
-
-        {/* Add Grains */}
-        { this.state.errors.map((error, index) => (
-          <p key={ index }>{ error.message }</p>
-        ))}
-
-        <form onSubmit={ this.addGrain }>
-          <label htmlFor="grains">Add Type</label>
-          <input type="text"
-            id="grains"
-            onChange={ this.update("grainType") }
-            placeholder="Type"
-            style={ inputStyle }
-            value={ this.state.grainType }
-          />
-
-          {/* Grain Amount */}
-          <label htmlFor="amount">Grain Amount</label>
-          <input type="text"
-            id="amount"
-            onChange={ this.update("grainAmount") }
-            placeholder="Amount"
-            style={ inputStyle }
-            value={ this.state.grainAmount }
-          />
-
-          {/* Grain Unit */}
-          <label htmlFor="grainUnit">Grain Unit</label>
-          <select
-            id="units"
-            onChange={ this.update("grainUnit") }
-            style={ inputStyle }
-            value={ this.state.grainUnit }
-          >
-            <option value="g">g</option>
-            <option value="lb">lb</option>
-            <option value="oz">oz</option>
-          </select>
-
-          <button>Add</button>
-        </form>
 
         {/* Added Grains */}
         <h2 style={ addedGrainsHeaderStyle }>Added Grains</h2>
