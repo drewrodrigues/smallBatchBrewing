@@ -58,7 +58,10 @@ export default class Form extends React.Component {
         { this.props.grains.map((grain, index) => (
           <p key={ index } style={ grainStyle }>
             { grain.type }
-            <span style={ grainDetailStyle }>{ grain.amount } { grain.unit }</span>
+            <span style={ grainDetailStyle }>
+              { grain.amount.toFixed(2) } { grain.unit }
+              --> { (grain.amount * this.state.multiplier).toFixed(2) } { grain.unit }
+            </span>
           </p>
         ))}
       </div>
