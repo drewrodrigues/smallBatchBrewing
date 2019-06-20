@@ -27,6 +27,7 @@ export default class Form extends React.Component {
     }
     const updatedGrains = this.state.grains
     updatedGrains.push(grainToAdd)
+    this.props.addGrain(grainToAdd)
     this.setState({
       grainAmount: 0,
       grainType: "",
