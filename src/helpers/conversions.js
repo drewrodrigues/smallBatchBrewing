@@ -1,9 +1,8 @@
 export const oneGallonMultiplier = (units, amount) => {
-  if (units === "gallons") {
-    return 1 / amount
-  } else if (units === "liters") {
-    return 1 / litersToGallons(amount)
-  }
+  if (amount === "") return 0
+  const parsedAmount = parseFloat(amount)
+  const convertedAmount = (units === "gallons" ? parsedAmount : litersToGallons(parsedAmount))
+  return (1 / convertedAmount).toFixed(2)
 }
 
 export const litersToGallons = liters => {
