@@ -9,7 +9,6 @@ export default class Form extends React.Component {
       grainAmount: 0,
       grainType: "",
       grainUnit: "oz",
-      grains: [],
       hops: [],
       unitAmount: 0,
       recipeUnits: "gallons"
@@ -25,14 +24,11 @@ export default class Form extends React.Component {
       type: this.state.grainType,
       unit: this.state.grainUnit
     }
-    const updatedGrains = this.state.grains
-    updatedGrains.push(grainToAdd)
     this.props.addGrain(grainToAdd)
     this.setState({
       grainAmount: 0,
       grainType: "",
-      grainUnit: "oz",
-      grains: updatedGrains
+      grainUnit: "oz"
     })
   }
 
@@ -109,8 +105,8 @@ export default class Form extends React.Component {
 
         {/* Added Grains */}
         <h2 style={ addedGrainsHeaderStyle }>Added Grains</h2>
-        { this.state.grains.map(grain => (
-          <p key={ grain } style={ grainStyle }>
+        { this.props.grains.map((grain, index) => (
+          <p key={ index } style={ grainStyle }>
             { grain.type }
             <span style={ grainDetailStyle }>{ grain.amount } { grain.unit }</span>
           </p>
