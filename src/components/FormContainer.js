@@ -1,13 +1,13 @@
 import { connect } from "react-redux"
 import Form from "./Form"
-import { addGrain } from "../actions/grainActions"
+import { updateMultiplier } from "../actions/recipeActions"
 
 const mapStateToProps = state => ({
-  grains: state.entities.grains
+  multiplier: state.entities.recipe.multiplier
 })
 
 const mapDispatchToProps = dispatch => ({
-  addGrain: grain => dispatch(addGrain(grain))
+  updateMultiplier: multiplier => dispatch(updateMultiplier(multiplier))
 })
 
 export default connect(

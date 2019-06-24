@@ -9,8 +9,6 @@ export default class Form extends React.Component {
     this.state = {
       abv: 0,
       errors: [],
-      hops: [],
-      multiplier: 1,
       unitAmount: 1,
       recipeUnits: "gallons"
     }
@@ -21,9 +19,9 @@ export default class Form extends React.Component {
       this.setState({
         [field]: e.target.value,
       }, () => {
-        this.setState({
-          multiplier: oneGallonMultiplier(this.state.recipeUnits, this.state.unitAmount)
-        })
+        this.props.updateMultiplier(
+          oneGallonMultiplier(this.state.recipeUnits, this.state.unitAmount)
+        )
       })
     }
   }
@@ -32,7 +30,7 @@ export default class Form extends React.Component {
     return (
       <div>
         <h1 style={ sectionHeader }>Recipe Details</h1>
-        <h2>Multiplier: { this.state.multiplier }</h2>
+        <h2>Multiplier: { this.props.multiplier }</h2>
 
         {/* Units */}
         <label htmlFor="units">Recipe Units</label>
