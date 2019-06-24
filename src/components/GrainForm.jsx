@@ -43,7 +43,7 @@ export default class GrainForm extends Component {
 
   render() {
     return (
-      <form onSubmit={ this.addGrain } style={ formStyle }>
+      <form onSubmit={ this.addGrain }>
         <h1 style={ sectionHeader }>Grains</h1>
 
         <div style={ errorsStyle }>

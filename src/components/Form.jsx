@@ -30,7 +30,7 @@ export default class Form extends React.Component {
 
   render() {
     return (
-      <div style={ formStyle }>
+      <div>
         <h1 style={ sectionHeader }>Recipe Details</h1>
         <h2>Multiplier: { this.state.multiplier }</h2>
 
@@ -52,28 +52,9 @@ export default class Form extends React.Component {
           style={ inputStyle }
           value={ this.state.unitAmount }
         />
-
-        {/* Added Grains */}
-        <h2 style={ addedGrainsHeaderStyle }>Added Grains</h2>
-        { this.props.grains.map((grain, index) => (
-          <p key={ index } style={ grainStyle }>
-            { grain.type }
-            <span style={ grainDetailStyle }>
-              { grain.amount.toFixed(2) } { grain.unit }
-              --> { (grain.amount * this.state.multiplier).toFixed(2) } { grain.unit }
-            </span>
-          </p>
-        ))}
       </div>
     )
   }
-}
-
-const addedGrainsHeaderStyle = {
-  color: "#ccc",
-  fontWeight: "700",
-  marginBottom: "10px",
-  marginTop: "25px"
 }
 
 const formStyle = {
@@ -83,17 +64,6 @@ const formStyle = {
   margin: "25px auto 0",
   padding: "25px",
   width: "350px"
-}
-
-const grainDetailStyle = {
-  float: "right"
-}
-
-const grainStyle = {
-  background: "#f9c633",
-  borderRadius: "5px",
-  marginBottom: "5px",
-  padding: "10px"
 }
 
 const inputStyle = {
