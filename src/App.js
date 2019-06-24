@@ -1,29 +1,31 @@
+// dependencies
 import React from 'react'
-import GrainIndexContainer from "./components/grains/GrainIndexContainer"
-import FormContainer from './components/FormContainer'
-import GrainFormContainer from "./components/GrainFormContainer"
 import { Provider } from "react-redux"
 import Store from './store'
+import { BrowserRouter, Route, Switch } from "react-router-dom"
+
+// components
+import Navbar from "./components/shared/Navbar"
+import Landing from "./components/pages/Landing"
+import Login from "./components/pages/Login"
+import Signup from "./components/pages/Signup"
+
+// styles
 import './App.css'
 
 function App() {
   return (
     <Provider store={ Store }>
-      <div className="App" style={ containerStyle }>
-        <FormContainer />
-        <GrainFormContainer />
-        <GrainIndexContainer />
-      </div>
+      <BrowserRouter>
+        <Navbar />
+        <Switch>
+          <Route path="/signup" component={ Signup } />
+          <Route path="/login" component={ Login } />
+          <Route path="/" component={ Landing } />
+        </Switch>
+      </BrowserRouter>
     </Provider>
   )
-}
-
-const containerStyle = {
-  background: "white",
-  borderRadius: "10px",
-  margin: "50px auto 0",
-  maxWidth: "500px",
-  padding: "20px"
 }
 
 export default App;
