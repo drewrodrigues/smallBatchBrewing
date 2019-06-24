@@ -1,15 +1,10 @@
 import React, { Component } from "react"
-import { oneGallonMultiplier } from "../../helpers/conversions"
 
 export default class GrainIndex extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      multiplier: 1
-    }
+  calculatedGrainAmount(amount) {
+    return (amount * this.props.multiplier).toFixed(2)
   }
-
+  
   render() {
     const { grains } = this.props
     
@@ -21,7 +16,7 @@ export default class GrainIndex extends Component {
             { grain.type }
             <span style={ grainDetailStyle }>
               { grain.amount.toFixed(2) } { grain.unit }
-              --> { (grain.amount * this.state.multiplier).toFixed(2) } { grain.unit }
+              --> { this.calculatedGrainAmount(grain.amount) } { grain.unit }
             </span>
           </p>
         ))}
