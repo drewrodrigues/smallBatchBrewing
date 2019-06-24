@@ -14,6 +14,12 @@ export default class Form extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.props.updateMultiplier(
+      oneGallonMultiplier(this.state.recipeUnits, this.state.unitAmount)
+    )
+  }
+
   update(field) {
     return e => {
       this.setState({
